@@ -16,3 +16,6 @@ const loftrClient = new LordOfTheRings({
  * Example usage: Fetches and logs the movies from the Lord of the Rings API.
  */
 loftrClient.moviesApi.getMovies().then((response) => console.log(response));
+loftrClient.moviesApi
+  .getMovies({ limit: 10, page: 2, offset: 3 })
+  .then((response) => console.log(response));
