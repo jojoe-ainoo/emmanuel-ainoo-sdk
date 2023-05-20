@@ -7,10 +7,20 @@ import * as types from "../common/types";
 export class QuotesAPI extends ApiClient {
   /**
    * Retrieves a list of quotes.
+   * @param pagination The pagination configuration.
    * @returns A promise that resolves to the list of quotes.
    */
-  async getQuotes(): Promise<types.Quote[]> {
-    return await this.get("/quote");
+  async getQuotes(pagination?: types.Pagination): Promise<types.Quote[]> {
+    const params: Record<string, any> = {};
+    if (pagination) {
+      if (pagination.limit) params.limit = pagination.limit;
+      if (pagination.page) params.page = pagination.page;
+      if (pagination.offset) params.offset = pagination.offset;
+    }
+
+    const queryString = new URLSearchParams(params).toString();
+    const path = `/quote${queryString ? `?${queryString}` : ""}`;
+    return await this.get(path);
   }
 
   /**

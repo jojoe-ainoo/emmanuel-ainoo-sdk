@@ -28,3 +28,9 @@ export interface Quote {
   dialog: string;
   movie: string;
 }
+
+export type Pagination = {
+  limit?: number;
+  page?: number;
+  offset?: number;
+};

@@ -21,13 +21,15 @@ export abstract class ApiClient {
   }
 
   /**
-   * Sends a GET request to the specified URL.
+   * Sends a GET request to the specified URL with optional query parameters.
    * @param url The URL to send the GET request to.
+   * @param params Optional query parameters for pagination, sorting and filtering.
    * @returns A promise that resolves to the response data.
    */
   public async get<T>(url: string): Promise<T> {
     try {
       const response: AxiosResponse<T> = await this.httpClient.get(url);
+      //   console.log(response.request);
       return response.data;
     } catch (error) {
       throw new Error(`Request failed: ${error.message}`);
