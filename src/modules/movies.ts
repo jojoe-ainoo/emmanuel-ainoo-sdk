@@ -15,9 +15,12 @@ export class MoviesAPI extends ApiClient {
     if (pagination) {
       if (pagination.limit) params.limit = pagination.limit;
       if (pagination.page) params.page = pagination.page;
-      if (pagination.offset) params.sort = pagination.offset;
+      if (pagination.offset) params.offset = pagination.offset;
     }
-    return this.get("/movie", { params });
+    const queryString = new URLSearchParams(params).toString();
+    const path = `/movie${queryString ? `?${queryString}` : ""}`;
+
+    return this.get(path);
   }
 
   /**
@@ -35,16 +38,7 @@ export class MoviesAPI extends ApiClient {
    * @param id The ID of the movie.
    * @returns A promise that resolves to the quotes for the movie with the specified ID.
    */
-  async getMovieQuotesById(
-    id: string,
-    pagination?: types.Pagination
-  ): Promise<types.Quote[]> {
-    const params: Record<string, any> = {};
-    if (pagination) {
-      if (pagination.limit) params.limit = pagination.limit;
-      if (pagination.page) params.page = pagination.page;
-      if (pagination.offset) params.sort = pagination.offset;
-    }
-    return this.get(`/movie/${id}/quote`, { params });
+  async getMovieQuotesById(id: string): Promise<types.Quote[]> {
+    return this.get(`/movie/${id}/quote/`);
   }
 }

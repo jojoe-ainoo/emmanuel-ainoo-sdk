@@ -15,9 +15,12 @@ export class QuotesAPI extends ApiClient {
     if (pagination) {
       if (pagination.limit) params.limit = pagination.limit;
       if (pagination.page) params.page = pagination.page;
-      if (pagination.offset) params.sort = pagination.offset;
+      if (pagination.offset) params.offset = pagination.offset;
     }
-    return await this.get("/quote", { params });
+
+    const queryString = new URLSearchParams(params).toString();
+    const path = `/quote${queryString ? `?${queryString}` : ""}`;
+    return await this.get(path);
   }
 
   /**

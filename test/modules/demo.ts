@@ -17,5 +17,5 @@ const loftrClient = new LordOfTheRings({
  */
 loftrClient.moviesApi.getMovies().then((response) => console.log(response));
 loftrClient.moviesApi
-  .getMovies({ limit: 10, page: 2, offset: 3 })
+  .getMovies({ limit: 1000, page: 1, offset: 3 })
   .then((response) => console.log(response));
