@@ -11,7 +11,10 @@ This projects builds an sdk that allows developers access the lord rings APIs fo
 To use this typescript sdk in your project:
 
 1. install the sdk from npm
-   `npm install emmanuel-ainoo-sdk`
+
+```shell
+npm install emmanuel-ainoo-sdk
+```
 
 2. Import and Create an instance of the Client
 
@@ -24,7 +27,9 @@ const loftrClient = new LordOfTheRings({
 });
 ```
 
-3. Example: Use client to fetch movies
+4. Access the lord of the rings documentation to get an API Key here: `https://the-one-api.dev/sign-up`
+
+5. Example: Use client to fetch movies
 
 ```typescript
 loftrClient.moviesApi.getMovies().then((response) => console.log(response));
